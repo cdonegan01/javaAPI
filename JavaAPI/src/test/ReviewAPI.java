@@ -16,46 +16,29 @@ import java.util.Iterator;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@Path("/hello")
-public class Hello {
+@Path("/getReviews")
+public class ReviewAPI {
+	
 	/**
-	@GET
-	@Produces(MediaType.TEXT_XML)
-	public String sayHello() {
-		String resource="<? xml version='1.0' ?>" +
-		"<hello>Sup loser, we're comin at you live from XML!</hello>";
-		
-		return resource;
-	}
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public String sayHelloJSON() {
-		String resource=null;
-		return resource;
-	}
-	
-	@GET
-	@Produces(MediaType.TEXT_HTML)
-	public String sayHelloHTML(@QueryParam("name") String name, @QueryParam("Card_no") String Card_no, 
-			@QueryParam("amount") int amount) {
-		System.out.println("Name is "+name);
-		System.out.println("Amount is "+amount);
-		String response;
-		
-		if(amount>10000) {
-			System.out.println("Amount is greater than ten thousand");
-			response = "Sorry, pal. No credit card for you.";
-		} else {
-			System.out.println("Amount is less than ten thousand.");
-			response = "You want a credit card? You got one, pal.";
-		}
-		
-		return "<html>" + "<title>" +"Credit Card Authorisation " +name+ "</title>" + "<body><h1>" +
-			response +"</h1></body>" + "</html>"; 
-	}
-	**/
-	
+	 * This API retrieves reviews from an inputted Business Name from Google Reviews or Yelp in JSON format, then
+	 * outputs the result in HTML format.
+	 * 
+	 * A FEW THINGS TO KEEP IN MIND:
+	 * 1. Ensure business name is inputted accurately!
+	 * 2. Due to restrictions on non-premium accounts, sometimes it will return a code 500 error due to 
+	 * 	  too many requests. Keep trying though, it has consistently worked after leaving it for a minute
+	 *    and trying again!
+	 * 3. Whilst the Google Reviews function takes directly from the currently uploaded database, due to my lack
+	 * 	  of space for a file as large as the Yelp json files, only the items located in the JSON files uploaded
+	 *    my personal github will work when interacting with those files. However, I am confident this solution
+	 *    will work for the full Yelp database where it accessible. For example, using a URL such as 
+	 *    http://localhost:8080/JavaAPI/rest/getReviews?businessName=MountainView%20Hospital&type=yelp
+	 *    will return reviews for that business, as data related to that business is in the github files. 
+	 * 4. Have fun, and please, pardon the mess!
+	 * @param businessName
+	 * @param type
+	 * @return response
+	 */
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String reviewRetriever(@QueryParam("businessName") String businessName, @QueryParam("type") String type) {

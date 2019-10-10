@@ -14,12 +14,11 @@ import org.json.simple.parser.ParseException;
 
 public class YelpReviewGetter {
 	
-	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String result = getPlaceID("MountainView Hospital");
-		ArrayList<Review> yelpReviews = getReviewInfo(result);
-	}*/
-	
+	/**
+	 * This method retrieves the ID of the business from the related Yelp JSON file. 
+	 * @param placeName
+	 * @return output
+	 */
 	public static String getPlaceID(String placeName) {
 		String output = "";
 		try {
@@ -55,6 +54,11 @@ public class YelpReviewGetter {
 		return output;
 	}
 	
+	/**
+	 * Retrieves the name of the user from the associated JSON file using the passed userID
+	 * @param userID
+	 * @return output
+	 */
 	public static String getUserName(String userID) {
 		String output = "";
 		try {
@@ -90,6 +94,11 @@ public class YelpReviewGetter {
 		return output;
 	}
 	
+	/**
+	 * This method retrieves the associated reviews by using the placeID retrieved with the "getPlaceID" method.
+	 * @param placeID
+	 * @return reviewList
+	 */
 	public static ArrayList<Review> getReviewInfo(String placeID) {
 		ArrayList<Review> reviewList = new ArrayList<Review>();
 		try {

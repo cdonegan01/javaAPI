@@ -14,6 +14,12 @@ import org.json.simple.parser.ParseException;
 
 public class GoogleReviewGetter {
 	
+	
+	/**
+	 * This method retrieves the ID of the business from the related Google Business JSON file. 
+	 * @param placeName
+	 * @return output
+	 */
 	public static String getPlaceID(String placeName) {
 		String output = "";
 		try {
@@ -52,6 +58,11 @@ public class GoogleReviewGetter {
 		return output;
 	}
 	
+	/**
+	 * This method retrieves the associated reviews by using the placeID retrieved with the "getPlaceID" method.
+	 * @param placeID
+	 * @return reviewList
+	 */
 	public static ArrayList<Review> getReviewInfo(String placeID) {
 		ArrayList<Review> reviewList = new ArrayList<Review>();
 		String output = "";
